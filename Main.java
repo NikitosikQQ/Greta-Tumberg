@@ -2,7 +2,6 @@ package gretaTumberg;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -11,8 +10,23 @@ public class Main {
         ArrayList<Human> humanMas = Human.createHumanMassive(bufReader);
 
         Writer fileWriter = new FileWriter("eco_data.csv");
-        EcoList ecoList = new EcoList();
-        ecoList.createEcoList(fileWriter, humanMas);
+        EcologyListOfHumans ecologyListOfHumans = new EcologyListOfHumans();
+        ListAnalyzable list = (human) -> {
+
+            if (human.getWaterCount() > EcologyListOfHumans.getEcologyNormalValue()) {
+                return true;
+            }
+
+            if ((human.getGasCountDay() + human.getGasCountNight()) > EcologyListOfHumans.getEcologyNormalValue()) {
+                return true;
+            }
+
+            if ((human.getElectroCountDay() + human.getElectroCountNight()) > EcologyListOfHumans.getEcologyNormalValue()) {
+                return true;
+            }
+            return false;
+        };
+        ecologyListOfHumans.createEcoList(fileWriter, humanMas, list);
 
         fileReader.close();
 
