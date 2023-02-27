@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
+   private static int ecologyNormalValue = 800;
     public static void main(String[] args) throws IOException {
         Reader fileReader = new FileReader("data.csv");
         BufferedReader bufReader = new BufferedReader(fileReader);
@@ -11,25 +12,24 @@ public class Main {
 
         Writer fileWriter = new FileWriter("eco_data.csv");
         EcologyListOfHumans ecologyListOfHumans = new EcologyListOfHumans();
-        ListAnalyzable list = (human) -> {
+        ListAnalyzable list = (human, ecologyNormalValue) -> {
 
-            if (human.getWaterCount() > EcologyListOfHumans.getEcologyNormalValue()) {
+            if (human.getWaterCount() > ecologyNormalValue) {
                 return true;
             }
 
-            if ((human.getGasCountDay() + human.getGasCountNight()) > EcologyListOfHumans.getEcologyNormalValue()) {
+            if ((human.getGasCountDay() + human.getGasCountNight()) > ecologyNormalValue) {
                 return true;
             }
 
-            if ((human.getElectroCountDay() + human.getElectroCountNight()) > EcologyListOfHumans.getEcologyNormalValue()) {
+            if ((human.getElectroCountDay() + human.getElectroCountNight()) > ecologyNormalValue) {
                 return true;
             }
             return false;
         };
-        ecologyListOfHumans.createEcoList(fileWriter, humanMas, list);
+        ecologyListOfHumans.createEcoList(fileWriter, humanMas, list, ecologyNormalValue);
 
         fileReader.close();
-
         bufReader.close();
         fileWriter.close();
 

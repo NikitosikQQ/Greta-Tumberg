@@ -5,11 +5,10 @@ import java.io.Writer;
 import java.util.ArrayList;
 
 public class EcologyListOfHumans {
-    private static int ecologyNormalValue = 800;
 
-    public void createEcoList(Writer fileWriter, ArrayList<Human> humanMas, ListAnalyzable list) throws IOException {
+    public void createEcoList(Writer fileWriter, ArrayList<Human> humanMas, ListAnalyzable list, int ecologyNormalValue) throws IOException {
         for (Human human : humanMas) {
-            if (list.isNotEcology(human)) {
+            if (list.isNotEcology(human, ecologyNormalValue)) {
                 fileWriter.write(createHumanStringLine(human) + "\n");
             }
         }
@@ -21,7 +20,5 @@ public class EcologyListOfHumans {
                 human.getElectroCountDay() + "|" + human.getElectroCountNight());
     }
 
-    public static int getEcologyNormalValue() {
-        return ecologyNormalValue;
-    }
 }
+
