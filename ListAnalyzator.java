@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class EcologyListOfHumans {
+public class ListAnalyzator {
 
     public void createEcoList(Writer fileWriter, ArrayList<Human> humanMas, ListAnalyzable list, int ecologyNormalValue) throws IOException {
         for (Human human : humanMas) {

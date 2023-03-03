@@ -1,7 +1,7 @@
 package gretaTumberg;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
    private static int ecologyNormalValue = 800;
@@ -11,7 +11,7 @@ public class Main {
         ArrayList<Human> humanMas = Human.createHumanMassive(bufReader);
 
         Writer fileWriter = new FileWriter("eco_data.csv");
-        EcologyListOfHumans ecologyListOfHumans = new EcologyListOfHumans();
+        ListAnalyzator listAnalyzator = new ListAnalyzator();
         ListAnalyzable list = (human, ecologyNormalValue) -> {
 
             if (human.getWaterCount() > ecologyNormalValue) {
@@ -27,11 +27,12 @@ public class Main {
             }
             return false;
         };
-        ecologyListOfHumans.createEcoList(fileWriter, humanMas, list, ecologyNormalValue);
+        listAnalyzator.createEcoList(fileWriter, humanMas, list, ecologyNormalValue);
 
         fileReader.close();
         bufReader.close();
         fileWriter.close();
+
 
     }
 
