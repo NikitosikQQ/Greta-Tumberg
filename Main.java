@@ -4,30 +4,33 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    private static int ecologyNormalValue = 400;
+    private static int ecologyNormalValue = 800;
 
     public static void main(String[] args) throws IOException {
         Reader fileReader = new FileReader("data.csv");
         BufferedReader bufReader = new BufferedReader(fileReader);
-        List<Human> humanMas = Human.createHumanMassive(bufReader);
+        EcologyReader reader = new EcologyReader();
+        List<Human> humanMas = reader.readFile(bufReader);
 
         Writer fileWriter = new FileWriter("eco_data.csv");
         WriterToFile writerFile = new WriterToFile();
+
         EcologyAnalyzator list = (human, ecologyNormalValue) -> {
 
             if (human.getWaterCount() > ecologyNormalValue) {
-                return true;
+                return false;
             }
 
             if ((human.getGasCountDay() + human.getGasCountNight()) > ecologyNormalValue) {
-                return true;
+                return false;
             }
 
             if ((human.getElectroCountDay() + human.getElectroCountNight()) > ecologyNormalValue) {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         };
+
         Filter filterClass = new EcologyFilter();
         writerFile.writeToFile(fileWriter, filterClass.filtrate(humanMas, list, ecologyNormalValue));
 

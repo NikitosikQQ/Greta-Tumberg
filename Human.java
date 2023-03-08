@@ -27,15 +27,7 @@ public class Human {
         electroCountNight = Integer.parseInt(info[6]);
     }
 
-    public static ArrayList<Human> createHumanMassive(BufferedReader bufReader) throws IOException {
-        String line = bufReader.readLine();
-        ArrayList<Human> humanMas = new ArrayList<>();
-        while ((line = bufReader.readLine()) != null) {
-            String[] allInfo = line.split("\\|");
-            humanMas.add(new Human(allInfo));
-        }
-        return humanMas;
-    }
+
 
 
     public int getId() {
