@@ -9,7 +9,7 @@ public class WriterToFile {
 
     public void writeToFile(Writer fileWriter, List<Human> ecologyHumans) throws IOException {
         for (Human human : ecologyHumans) {
-                fileWriter.write(createHumanStringLine(human) + "\n");
+            fileWriter.write(createHumanStringLine(human) + "\n");
         }
     }
 

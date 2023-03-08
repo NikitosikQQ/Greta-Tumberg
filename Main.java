@@ -4,11 +4,12 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-   private static int ecologyNormalValue = 400;
+    private static int ecologyNormalValue = 400;
+
     public static void main(String[] args) throws IOException {
         Reader fileReader = new FileReader("data.csv");
         BufferedReader bufReader = new BufferedReader(fileReader);
-        ArrayList<Human> humanMas = Human.createHumanMassive(bufReader);
+        List<Human> humanMas = Human.createHumanMassive(bufReader);
 
         Writer fileWriter = new FileWriter("eco_data.csv");
         WriterToFile writerFile = new WriterToFile();
@@ -27,8 +28,8 @@ public class Main {
             }
             return false;
         };
-        Filter filter = new Filter();
-        writerFile.writeToFile(fileWriter, filter.filtrateNotEcology(humanMas,list,ecologyNormalValue));
+        Filter filterClass = new EcologyFilter();
+        writerFile.writeToFile(fileWriter, filterClass.filtrate(humanMas, list, ecologyNormalValue));
 
         fileReader.close();
         bufReader.close();
