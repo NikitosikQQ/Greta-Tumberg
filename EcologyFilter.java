@@ -6,10 +6,10 @@ import java.util.List;
 public class EcologyFilter implements Filter {
 
     @Override
-    public List<Human> filtrate(List<Human> humanMas, EcologyAnalyzator list, int ecologyNormalValue) {
+    public List<Human> filtrate(List<Human> humanMas, EcologyAnalyzator ecologyAnalyzator, int ecologyNormalValue) {
         List<Human> ecologyHuman = new ArrayList<>();
         for (Human human : humanMas) {
-            if (list.isEcology(human, ecologyNormalValue)) {
+            if (ecologyAnalyzator.isEcology(human, ecologyNormalValue)) {
                 ecologyHuman.add(human);
             }
         }

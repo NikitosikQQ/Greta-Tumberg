@@ -15,7 +15,7 @@ public class Main {
         Writer fileWriter = new FileWriter("eco_data.csv");
         WriterToFile writerFile = new WriterToFile();
 
-        EcologyAnalyzator list = (human, ecologyNormalValue) -> {
+        EcologyAnalyzator ecologyAnalyzator = (human, ecologyNormalValue) -> {
 
             if (human.getWaterCount() > ecologyNormalValue) {
                 return false;
@@ -32,7 +32,7 @@ public class Main {
         };
 
         Filter filterClass = new EcologyFilter();
-        writerFile.writeToFile(fileWriter, filterClass.filtrate(humanMas, list, ecologyNormalValue));
+        writerFile.writeToFile(fileWriter, filterClass.filtrate(humanMas, ecologyAnalyzator, ecologyNormalValue));
 
         fileReader.close();
         bufReader.close();
