@@ -4,15 +4,15 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-   private static int ecologyNormalValue = 800;
+   private static int ecologyNormalValue = 400;
     public static void main(String[] args) throws IOException {
         Reader fileReader = new FileReader("data.csv");
         BufferedReader bufReader = new BufferedReader(fileReader);
         ArrayList<Human> humanMas = Human.createHumanMassive(bufReader);
 
         Writer fileWriter = new FileWriter("eco_data.csv");
-        ListAnalyzator listAnalyzator = new ListAnalyzator();
-        ListAnalyzable list = (human, ecologyNormalValue) -> {
+        WriterToFile writerFile = new WriterToFile();
+        EcologyAnalyzator list = (human, ecologyNormalValue) -> {
 
             if (human.getWaterCount() > ecologyNormalValue) {
                 return true;
@@ -27,7 +27,8 @@ public class Main {
             }
             return false;
         };
-        listAnalyzator.createEcoList(fileWriter, humanMas, list, ecologyNormalValue);
+        Filter filter = new Filter();
+        writerFile.writeToFile(fileWriter, filter.filtrateNotEcology(humanMas,list,ecologyNormalValue));
 
         fileReader.close();
         bufReader.close();

@@ -1,6 +1,6 @@
 package gretaTumberg;
 
-public interface ListAnalyzable {
+public interface EcologyAnalyzator {
 
     boolean isNotEcology(Human human, int ecoValue);
 

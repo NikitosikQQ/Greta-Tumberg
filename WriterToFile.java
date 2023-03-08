@@ -3,14 +3,13 @@ package gretaTumberg;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListAnalyzator {
+public class WriterToFile {
 
-    public void createEcoList(Writer fileWriter, ArrayList<Human> humanMas, ListAnalyzable list, int ecologyNormalValue) throws IOException {
-        for (Human human : humanMas) {
-            if (list.isNotEcology(human, ecologyNormalValue)) {
+    public void writeToFile(Writer fileWriter, List<Human> ecologyHumans) throws IOException {
+        for (Human human : ecologyHumans) {
                 fileWriter.write(createHumanStringLine(human) + "\n");
-            }
         }
     }
 
